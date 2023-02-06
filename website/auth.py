@@ -7,7 +7,6 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
 
-
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -26,7 +25,6 @@ def login():
             flash('Email does not exist.', category='error')
 
     return render_template("login.html", user=current_user)
-
 
 @auth.route('/logout')
 @login_required
@@ -72,3 +70,9 @@ def user_dashboard():
 @auth.route('/user-info', methods=['GET', 'POST'])
 def user_info():
     return render_template("User_info.html", user=current_user)
+
+@auth.route('/success', methods = ['POST'])  
+def success():  
+    if request.method == 'POST':  
+        f = request.files['file']
+        f.save(f.filename)

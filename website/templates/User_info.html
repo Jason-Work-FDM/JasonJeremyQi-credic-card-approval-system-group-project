@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}User Info{% endblock %} {% block content %}
 
-<h1 align="center">User Info for "user" </h1>
+<h1 align="center">User Info for {{ user.first_name }} </h1>
 
 <ul class="list-group list-group-flush" id="notes">
   {% for note in user.notes %}
@@ -18,6 +18,11 @@
   <div align="center">
     <button type="submit" class="btn btn-primary">Add Note</button>
   </div>
+</form>
+
+<form action="/success" method="POST" enctype="multipart/form-data">  
+  <input type="file" name="file" />
+  <input type="submit" value="Upload">
 </form>
 
 {% endblock %}
