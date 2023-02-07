@@ -15,6 +15,16 @@ def user_dashboard():
 
 @links.route('/user-info', methods=['GET', 'POST'])
 def user_info():
+    if request.method == 'POST':
+        income = request.form.get('income')
+        email = request.form.get('email')
+        Pay_Interval = request.form.get('Pay Interval')
+        user = User.query.filter_by(email=email).first()    
+        user.income=income 
+        user.Pay_Interval = Pay_Interval
+        db.session.commit()
+    
+    
     return render_template("User_info.html", user=current_user)
 
 @links.route('/success', methods=['POST'])  
