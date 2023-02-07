@@ -39,3 +39,7 @@ def apply():
 @links.route('/spending_habits', methods=['GET', 'POST'])
 def spending_habits():
     return render_template("spending_habits.html", user=current_user)
+    
+@links.route('/documents', methods=['GET', 'POST'])
+def documents():
+    return render_template("documents.html", user=current_user)
