@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}User Info{% endblock %} {% block content %}
 
-<h1 align="center">User Info for "user" </h1>
+<h1 align="center">Personal Info for {{ user.first_name }}</h1>
 
 <ul class="list-group list-group-flush" id="notes">
   {% for note in user.notes %}
@@ -13,11 +13,123 @@
   {% endfor %}
 </ul>
 <form method="POST">
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Edit Profile</button>
+  </div>  
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br>
+
+  <label for="email">Email Address: </label>
+  <input
+    type="email"
+    id="email" 
+    name="email"
+    placeholder="e.g. me@example.com"
+  /><br>
+  
+  <br/>
+  <label for="income">Income/Salary (after tax):</label>
+  <!-- <input list="Pay Interval" 
+    placeholder="Please Select Pay Interval"
+    size=30
+  /> -->
+  <input
+  type="number"
+  id = "income"
+  name="income"
+  palceholder="0"
+  /><br>  
+  <label for="Pay Interval">Pay Interval: </label>
+
+  <select name="Pay Interval" id="Pay Interval">
+    <option value="Daily">Daily</option>
+    <option value="Weekly">Weekly</option>
+    <option value="Fortnightly">Fortnightly</option>
+    <option value="Monthly">Monthly</option>
+  </select>
+  <br>
+
+  <div align="right">
+    <!-- Hasn't been able to implement anything useful yet-->
+    <button type="submit" class="btn btn-primary">Add Other Income</button>
+  </div>
+  <br/>
+  <br>
+  <label for="Relationship Stauts">Relationship Stauts: </label>
+  <select name="Relationship Stauts" id="Relationship Stauts">
+    <option value="Single">Single</option>
+    <option value="Married">Married</option>
+    <option value="Defacto">Defacto</option>
+    <option value="Separated">Separated</option>
+    <option value="Devoiced">Devoiced</option>
+    <option value="Widow">Widow</option>
+    <option value="Widower">Widower</option>
+  </select>
+  <br>
+  <label for="Dependants">Number of Dependants: </label>
+  <input
+    type="number"
+    id = "Dependants"
+    name="Dependants"
+    palceholder=1
+  /><br>  
+  <label for="Housing Situation">Housing Situation: </label>
+  <select name="Housing Situation" id="Housing Situation">
+    <option value="Mortgaged">Mortgaged</option>
+    <option value="Owns Outright">Owns Outright</option>
+    <option value="Renting">Renting</option>
+    <option value="Live with Family">Live with Family</option>
+  </select>
+  <br>
+  <br>
+  <label for="Liabilities" style="font-size: 100%">Liabilities: </label><br>
+  <pre>
+  Do you have any home loans, including for investment purposes?
+  Do you have any personal loans? e.g. car loan, HELP?
+  Do you have any credit cards?
+  Do you have any other liability?  </pre>
+  <p style="font-size: 100%">If you answered yes to any of the questions. Please add detail.</p>
+  <br>
+  <!-- <input type="radio" id="Yes" name="Home Loan" value="Yes"/>
+  <label for="Yes" -->
+
+
+
+
+
+  
   <textarea name="note" id="note" class="form-control"></textarea>
   <br />
-  <div align="center">
-    <button type="submit" class="btn btn-primary">Add Note</button>
-  </div>
-</form>
 
+
+
+
+
+</form>
+<!--<button onclick="myFunction()">Click Me</button>
+
+<div id="myDIV">
+  This is my DIV element.
+</div>
+<script>
+  function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+</script>-->
+
+<div align="center">
+  <button type="submit" class="btn btn-primary">Save Profile</button>
+</div>
+
+<form action = "/success" method = "post" enctype="multipart/form-data">  
+  <input type="file" name="file" />  
+  <input type = "submit" value="Upload">
+</form>  
 {% endblock %}
