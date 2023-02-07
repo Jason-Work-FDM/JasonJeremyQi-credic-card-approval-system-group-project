@@ -64,22 +64,3 @@ def sign_up():
             return redirect(url_for('views.home'))
 
     return render_template("sign_up.html", user=current_user)
-
-@auth.route('/user-dashboard', methods=['GET', 'POST'])
-def user_dashboard():
-    return render_template("User_dashboard.html", user=current_user)
-
-@auth.route('/user-info', methods=['GET', 'POST'])
-def user_info():
-    return render_template("User_info.html", user=current_user)
-
-@auth.route('/success', methods=['POST'])  
-def success():  
-    if request.method == 'POST': 
-        f = request.files['file']
-        upload_dir = './user_uploads/'
-        user_path = os.path.join(upload_dir, str(current_user.id))
-        if not os.path.isdir(user_path):
-            os.mkdir(user_path)
-
-        f.save(f"{user_path}/{f.filename}")

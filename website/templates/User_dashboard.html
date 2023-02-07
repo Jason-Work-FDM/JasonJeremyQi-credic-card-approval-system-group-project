@@ -1,30 +1,44 @@
 {% extends "base.html" %} {% block title %}User Dashboard{% endblock %} {% block content %}
+<h1 align="center">{{ user.first_name }}'s Dashboard</h1>
+<style>
+  table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:24px;
+  }
+  th, td {
+    padding: 140px;
+  }
+  </style>
+<table>
+  <tr>
+    <td align="center">
+      <a href="apply"><img src="static/images/credit_icon.png">
+        <p>Apply for Credit Card</p>
+      </a>
+    </td>
+    <td align="center">
+      <a href="user-info"><img src="static/images/user_info.png">
+        <p>User Profile</p>
+      </a>
+    </td>
+    <td align="center">
+      <a href="spending_habits"><img src="static/images/spending_habits.png">
+        <p style="font-size:24px">Spending Habits</p>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
-<h1 align="center">User Dashboard for "user" </h1>
 
-<ul class="list-group list-group-flush" id="notes">
-  {% for note in user.notes %}
-  <li class="list-group-item">
-    {{ note.data }}
-    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </li>
-  {% endfor %}
-</ul>
-<form method="POST">
-  <textarea name="note" id="note" class="form-control"></textarea>
-  <br />
-  <div align="center">
-    <button type="submit" class="btn btn-primary">Add Note</button>
-  </div>
-</form>
-<form>
-    <label for="fname">First name:</label>
-    <input type="text" id="fname" name="fname"  ><br>
-    <label for="lname">Last name:</label>
-    <input type="text" id="lname" name="lname" </br>
-    <input type="button" id="testButton" name="testButton" value="testButton">
-    <input type="reset"/>
-</form>
+
+
+
 {% endblock %}
