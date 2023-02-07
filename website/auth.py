@@ -4,9 +4,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 
+import os
+
 
 auth = Blueprint('auth', __name__)
-
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -26,7 +27,6 @@ def login():
             flash('Email does not exist.', category='error')
 
     return render_template("login.html", user=current_user)
-
 
 @auth.route('/logout')
 @login_required
@@ -64,11 +64,3 @@ def sign_up():
             return redirect(url_for('views.home'))
 
     return render_template("sign_up.html", user=current_user)
-
-@auth.route('/user-dashboard', methods=['GET', 'POST'])
-def user_dashboard():
-    return render_template("User_dashboard.html", user=current_user)
-
-@auth.route('/user-info', methods=['GET', 'POST'])
-def user_info():
-    return render_template("User_info.html", user=current_user)
