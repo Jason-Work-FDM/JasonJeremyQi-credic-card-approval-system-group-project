@@ -64,7 +64,7 @@
 
   <div align="right">
     <!-- Hasn't been able to implement anything useful yet-->
-    <button type="submit" class="btn btn-primary">Add Other Income</button>
+    <button type="button" class="btn btn-primary">Add Other Income</button>
   </div>
   <br/>
   <br>
@@ -184,6 +184,50 @@
     name="Education Cost"
     palceholder=1
   /><br>   
+
+  <h1 align="center">Employment</h1>
+  <br>
+  <label for="Employment Type">Employment Type: </label>
+  <select name="Employment Type" id="Employment Type">
+    <option value="Full Time">Full Time</option>
+    <option value="Part Time">Part Time</option>
+    <option value="Casual">Casual</option>
+    <option value="Self-employed">Self-employed</option>
+    <option value="Unemployed">Unemployed</option>
+  </select>
+  <br>     
+  <label for="Occupation">Occupation: </label>
+  <input
+    type="text"
+    id = "Occupation"
+    name="Occupation"
+    palceholder=1
+  /><br>     
+  <label for="Company Name">Company Name: </label>
+  <input
+    type="text"
+    id = "Company Name"
+    name="Company Name"
+    palceholder=1
+  /><br>     
+  <label for="Service Time">Length of time working for this employer (in months): </label>
+  <input
+    type="number"
+    id = "Service Time"
+    name="Service Time"
+    palceholder=1
+  /><br>
+
+  <br>
+  <h1 align="center">Credit Limit</h1>
+  <label for="Credit Limit">Select preferred credit limit (in hundreds): </label>
+  <input
+    type="number"
+    id = "Credit Limit"
+    name="Credit Limit"
+    palceholder=1
+  /><br>     
+
 
 
 </form>

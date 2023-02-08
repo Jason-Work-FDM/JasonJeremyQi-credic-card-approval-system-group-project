@@ -16,12 +16,59 @@ def user_dashboard():
 @links.route('/user-info', methods=['GET', 'POST'])
 def user_info():
     if request.method == 'POST':
-        income = request.form.get('income')
+        
         email = request.form.get('email')
+        first_name = request.form.get('fname')
+        Last_name = request.form.get('lname')
+        Middle_name = request.form.get('mname')
+        Mobile = request.form.get('mobile')
+        Address = request.form.get('Address')
+        income = request.form.get('income')
         Pay_Interval = request.form.get('Pay Interval')
+        Relationship_Status = request.form.get('Relationship Stauts')
+        Dependants = request.form.get('Dependants')
+        Housing_Situation = request.form.get('Housing Situation')
+        # Liabilities = request.form.get('income')
+        Food = request.form.get('Food')
+        Utilities = request.form.get('Utilities')
+        Entertainment = request.form.get('Entertainment')
+        Clothing = request.form.get('Clothing')
+        Home = request.form.get('Home')
+        Private_Insurance = request.form.get('Private Insurance')
+        Memberships = request.form.get('Memberships')
+        Child_Support = request.form.get('Child Support')
+        Education_Cost = request.form.get('Education Cost')
+        Employment_Type = request.form.get('Employment Type')
+        Occupation = request.form.get('Occupation')
+        Company_Name = request.form.get('Company Name')
+        Service_Time = request.form.get('Service Time')
+        Credit_Limit = request.form.get('Credit Limit')
+
         user = User.query.filter_by(email=email).first()    
+        user.first_name = first_name 
+        user.Last_name = Last_name
+        user.Middle_name = Middle_name
+        user.Mobile = Mobile 
+        user.Address = Address
         user.income=income 
         user.Pay_Interval = Pay_Interval
+        user.Relationship_Status = Relationship_Status
+        user.Dependants = Dependants
+        user.Housing_Situation = Housing_Situation
+        user.Food = Food
+        user.Utilities = Utilities
+        user.Entertainment = Entertainment
+        user.Clothing = Clothing
+        user.Home = Home
+        user.Private_Insurance = Private_Insurance
+        user.Memberships = Memberships
+        user.Child_Support = Child_Support
+        user.Education_Cost = Education_Cost
+        user.Employment_Type = Employment_Type
+        user.Occupation = Occupation
+        user.Company_Name = Company_Name
+        user.Service_Time = Service_Time
+        user.Credit_Limit = Credit_Limit
         db.session.commit()
     
     
