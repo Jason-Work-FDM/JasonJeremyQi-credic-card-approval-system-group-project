@@ -19,22 +19,22 @@
     <button type="submit" class="btn btn-primary">Edit Profile</button>
   </div>  
   <label for="fname">First name: </label>
-  <input type="text" id="fname" name="fname"><br>
+  <input type="text" id="fname" name="fname" value={{ user.first_name }}><br>
   <label for="lname">Last name: </label>
-  <input type="text" id="lname" name="lname"><br>
+  <input type="text" id="lname" name="lname" value={{user.Last_name}}><br>
   <label for="mname">Middle name (optional): </label>
-  <input type="text" id="mname" name="mname"><br>
+  <input type="text" id="mname" name="mname" value={{user.Middle_name}}><br>
   <label for="email">Email Address: </label>
   <input
     type="email"
     id="email" 
     name="email"
-    placeholder="e.g. me@example.com"
+    value={{user.email}}
   /><br>
   <label for="mobile">Mobile: </label>
-  <input type="tel" id="mobile" name="mobile"><br>
+  <input type="tel" id="mobile" name="mobile" value={{user.Mobile}}><br>
   <label for="Address">Address: </label>
-  <input type="text" id="Address" name="Address"><br>
+  <input type="text" id="Address" name="Address" value={{user.Address}}><br>
 
 
 
@@ -50,11 +50,11 @@
   type="number"
   id = "income"
   name="income"
-  palceholder="0"
+  value={{user.income}}
   /><br>  
   <label for="Pay Interval">Pay Interval: </label>
 
-  <select name="Pay Interval" id="Pay Interval">
+  <select name="Pay Interval" id="Pay Interval" value={{user.Pay_Interval}}>
     <option value="Daily">Daily</option>
     <option value="Weekly">Weekly</option>
     <option value="Fortnightly">Fortnightly</option>
@@ -69,7 +69,7 @@
   <br/>
   <br>
   <label for="Relationship Stauts">Relationship Stauts: </label>
-  <select name="Relationship Stauts" id="Relationship Stauts">
+  <select name="Relationship Stauts" id="Relationship Stauts" value={{user.Relationship_Status}}>
     <option value="Single">Single</option>
     <option value="Married">Married</option>
     <option value="Defacto">Defacto</option>
@@ -84,10 +84,10 @@
     type="number"
     id = "Dependants"
     name="Dependants"
-    palceholder=1
+    value={{user.Dependants}}
   /><br>  
   <label for="Housing Situation">Housing Situation: </label>
-  <select name="Housing Situation" id="Housing Situation">
+  <select name="Housing Situation" id="Housing Situation" value={{user.Housing_Situation}}>
     <option value="Mortgaged">Mortgaged</option>
     <option value="Owns Outright">Owns Outright</option>
     <option value="Renting">Renting</option>
@@ -122,35 +122,35 @@
     type="number"
     id = "Food"
     name="Food"
-    palceholder=1
+    value={{user.Food}}
   /><br> 
   <label for="Utilities">Utilities: </label>
   <input
     type="number"
     id = "Utilities"
     name="Utilities"
-    palceholder=1
+    value={{user.Utilities}}
   /><br>   
   <label for="Entertainment">Travel and Entertainment: </label>
   <input
     type="number"
     id = "Entertainment"
     name="Entertainment"
-    palceholder=1
+    value={{user.Entertainment}}
   /><br>   
   <label for="Clothing">Clothing, School and Pets: </label>
   <input
     type="number"
     id = "Clothing"
     name="Clothing"
-    palceholder=1
+    value={{user.Clothing}}
   /><br>   
   <label for="Home">Home, Contents and Car Insurance: </label>
   <input
     type="number"
     id = "Home"
     name="Home"
-    palceholder=1
+    value={{user.Home}}
   /><br> 
   <br>
 
@@ -161,34 +161,34 @@
     type="number"
     id = "Private Insurance"
     name="Private Insurance"
-    palceholder=1
+    value={{user.Private_Insurance}}
   /><br> 
   <label for="Memberships">Memberships: </label>
   <input
     type="number"
     id = "Memberships"
     name="Memberships"
-    palceholder=1
+    value={{user.Memberships}}
   /><br>   
   <label for="Child Support">Child Support: </label>
   <input
     type="number"
     id = "Child Support"
     name="Child Support"
-    palceholder=1
+    value={{user.Child_Support}}
   /><br>   
   <label for="Education Cost">Education Cost: </label>
   <input
     type="number"
     id = "Education Cost"
     name="Education Cost"
-    palceholder=1
+    value={{user.Education_Cost}}
   /><br>   
 
   <h1 align="center">Employment</h1>
   <br>
   <label for="Employment Type">Employment Type: </label>
-  <select name="Employment Type" id="Employment Type">
+  <select name="Employment Type" id="Employment Type" value={{user.Employment_Type}}>
     <option value="Full Time">Full Time</option>
     <option value="Part Time">Part Time</option>
     <option value="Casual">Casual</option>
@@ -201,21 +201,21 @@
     type="text"
     id = "Occupation"
     name="Occupation"
-    palceholder=1
+    value={{user.Occupation}}
   /><br>     
   <label for="Company Name">Company Name: </label>
   <input
     type="text"
     id = "Company Name"
     name="Company Name"
-    palceholder=1
+    value={{user.Company_Name}}
   /><br>     
   <label for="Service Time">Length of time working for this employer (in months): </label>
   <input
     type="number"
     id = "Service Time"
     name="Service Time"
-    palceholder=1
+    value={{user.Service_Time}}
   /><br>
 
   <br>
@@ -225,11 +225,13 @@
     type="number"
     id = "Credit Limit"
     name="Credit Limit"
-    palceholder=1
+    value={{user.Credit_Limit}}
   /><br>     
 
 
-
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Save Profile</button>
+  </div>
 </form>
 <!--<button onclick="myFunction()">Click Me</button>
 
@@ -247,9 +249,7 @@
   }
 </script>-->
 
-<div align="center">
-  <button type="submit" class="btn btn-primary">Save Profile</button>
-</div>
+
 
 <form action = "/success" method = "post" enctype="multipart/form-data">  
   <input type="file" name="file" />  
