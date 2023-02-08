@@ -32,8 +32,12 @@ def success():
     if request.method == 'POST': 
         f = request.files['file']
         upload_dir = './user_uploads/'
+        if not os.path.isdir(upload_dir):
+            print("i'm in create upload dir")
+            os.mkdir(upload_dir)
         user_path = os.path.join(upload_dir, str(current_user.id))
         if not os.path.isdir(user_path):
+            print("i'm in if not os.path.isdir")
             os.mkdir(user_path)
 
         f.save(f"{user_path}/{f.filename}")
