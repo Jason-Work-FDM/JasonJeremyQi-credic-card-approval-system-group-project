@@ -14,14 +14,16 @@
 </ul>
 
 
-<form method="POST">
+
+<form id="info_form" method="POST" >
+
   <div align="center">
-    <button type="submit" class="btn btn-primary">Edit Profile</button>
+    <button type="submit" class="btn btn-primary">Save Profile</button>
   </div>  
   <label for="fname">First name: </label>
-  <input type="text" id="fname" name="fname" value={{ user.first_name }}><br>
+  <input type="text" id="fname" name="fname"  value={{user.first_name}}><br>
   <label for="lname">Last name: </label>
-  <input type="text" id="lname" name="lname" value={{user.Last_name}}><br>
+  <input type="text" id="lname" name="lname"  value={{user.Last_name}}><br>
   <label for="mname">Middle name (optional): </label>
   <input type="text" id="mname" name="mname" value={{user.Middle_name}}><br>
   <label for="email">Email Address: </label>
@@ -41,31 +43,79 @@
 
 
   <br/>
-  <label for="income">Income/Salary (after tax):</label>
-  <!-- <input list="Pay Interval" 
-    placeholder="Please Select Pay Interval"
-    size=30
-  /> -->
-  <input
-  type="number"
-  id = "income"
-  name="income"
-  value={{user.income}}
-  /><br>  
-  <label for="Pay Interval">Pay Interval: </label>
+  <div id="income_section"> 
+    <h1 align="center">Income Section </h1>
+    <label for="income">Income/Salary (after tax):</label>
+    <!-- <input list="Pay Interval" 
+      placeholder="Please Select Pay Interval"
+      size=30
+    /> -->
+    <input
+    type="number"
+    id = "income"
+    name="income"
+    value={{user.income}}
+    /><br>  
+    <label for="Pay Interval">Pay Interval: </label>
 
-  <select name="Pay Interval" id="Pay Interval" value={{user.Pay_Interval}}>
-    <option value="Daily">Daily</option>
-    <option value="Weekly">Weekly</option>
-    <option value="Fortnightly">Fortnightly</option>
-    <option value="Monthly">Monthly</option>
-  </select>
-  <br>
+    <select name="Pay Interval" id="Pay Interval" value={{user.Pay_Interval}}>
+      <option value="Daily">Daily</option>
+      <option value="Weekly">Weekly</option>
+      <option value="Fortnightly">Fortnightly</option>
+      <option value="Monthly">Monthly</option>
+    </select>
+    <br>
+  </div>
+  <div id="Other_Income" >
+    <label for="newIncome1">newIncome 1</label>
+    <input
+    type="number"
+    id = "newIncome1"
+    name="newIncome1"
+
+    /><br>  
+    <label for="Pay Interval">Pay Interval: </label>
+
+    <select name="Pay Interval" id="Pay Interval" value={{user.Pay_Interval}}>
+      <option value="Daily">Daily</option>
+      <option value="Weekly">Weekly</option>
+      <option value="Fortnightly">Fortnightly</option>
+      <option value="Monthly">Monthly</option>
+    </select>
+    <br>    
+  </div> 
+  <script>
+    function addIncome() {
+      var x = document.getElementById('Other_Income');
+      /*<!--var newIncomeSection = document.getElementById('newIncome')-->
+      const newIncomeLabel=document.createElement('LABEL');
+
+      newIncomeLabel.textContent='new label is here';
+      const newInput=document.createElemnt('INPUT');
+      newInput.type=number;
+      x.appendChild(newIncomeLabel);
+      x.appendChild(newInput);*/
+      let newVar=document.createElement('label')
+      newVar.textContent="new Income 2 : "
+      let newVar2=document.createElement('input')
+      newVar2.id="income2"
+      newVar2.type="number"
+      newVar.for = "income2"
+      let elebreak=document.createElement('br')
+
+      x.append(newVar)
+
+      x.append(newVar2)
+      x.append(elebreak)
+    }
+  </script>
+
 
   <div align="right">
     <!-- Hasn't been able to implement anything useful yet-->
-    <button type="button" class="btn btn-primary">Add Other Income</button>
+    <button type="button" id="btnAddOtherIncome" onclick="addIncome()">Add Other Income</button>
   </div>
+
   <br/>
   <br>
   <label for="Relationship Stauts">Relationship Stauts: </label>
@@ -105,6 +155,8 @@
   <br>
   <!-- <input type="radio" id="Yes" name="Home Loan" value="Yes"/>
   <label for="Yes" -->
+
+
 
 
 
@@ -233,21 +285,6 @@
     <button type="submit" class="btn btn-primary">Save Profile</button>
   </div>
 </form>
-<!--<button onclick="myFunction()">Click Me</button>
-
-<div id="myDIV">
-  This is my DIV element.
-</div>
-<script>
-  function myFunction() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
-</script>-->
 
 
 
@@ -256,3 +293,20 @@
   <input type = "submit" value="Upload">
 </form>  
 {% endblock %}
+
+<!--  <script>
+    function myFunction() {
+      var x = document.getElementById("myDIV");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+  </script>
+  <button type="button" onclick="myFunction()">Click Me</button>
+
+  <div id="myDIV">
+    This is my DIV element.
+  </div>
+-->

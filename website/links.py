@@ -15,32 +15,7 @@ def user_dashboard():
 
 @links.route('/user-info', methods=['GET', 'POST'])
 def user_info():
-    # login_user(current_user, remember=True)
-    # user = current_user    
-    # user.first_name = first_name 
-    # user.Last_name = Last_name
-    # user.Middle_name = Middle_name
-    # user.Mobile = Mobile 
-    # user.Address = Address
-    # user.income=income 
-    # user.Pay_Interval = Pay_Interval
-    # user.Relationship_Status = Relationship_Status
-    # user.Dependants = Dependants
-    # user.Housing_Situation = Housing_Situation
-    # user.Food = Food
-    # user.Utilities = Utilities
-    # user.Entertainment = Entertainment
-    # user.Clothing = Clothing
-    # user.Home = Home
-    # user.Private_Insurance = Private_Insurance
-    # user.Memberships = Memberships
-    # user.Child_Support = Child_Support
-    # user.Education_Cost = Education_Cost
-    # user.Employment_Type = Employment_Type
-    # user.Occupation = Occupation
-    # user.Company_Name = Company_Name
-    # user.Service_Time = Service_Time
-    # user.Credit_Limit = Credit_Limit
+
     if request.method == 'POST':
         
         email = request.form.get('email')
