@@ -97,6 +97,32 @@ def dashboard():
 
 @links.route('/apply', methods=['GET', 'POST'])
 def apply():
+    if request.method == 'POST':
+        if request.form.get('action1') == 'apply product 1':
+            flash('your application for product 1 is under review, we will contact you via email asap!', category='success')
+            if current_user.income>5:
+                #send approval email
+                flash('you got approved for product 1', category="success")
+            else:
+                flash('you got disapproved for product 1', category="error")
+            
+            
+            
+            
+            
+        elif  request.form.get('action2') == 'apply product 2':
+            flash('your application for product 2 is under review, we will contact you via email asap!', category='success')
+            if current_user.income>10:
+                #send approval email
+                flash('you got approved for product 2', category="success")
+            else:
+                flash('you got disapproved for product 2', category="error")       
+        # else:
+            # pass # unknown
+    # elif request.method == 'GET':
+
+        # return render_template("apply.html", user=current_user)
+
     return render_template("apply.html", user=current_user)
 
 @links.route('/spending_habits', methods=['GET', 'POST'])
