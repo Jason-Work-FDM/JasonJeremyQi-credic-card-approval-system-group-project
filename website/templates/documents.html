@@ -1,5 +1,43 @@
 {% extends "base.html" %} {% block title %}User Dashboard{% endblock %} {% block content %}
 
-<h1 align="center">{{ user.first_name }}'s Documents</h1>
 
+<!DOCTYPE html>
+<h1 align="center">{{ user.first_name }}'s Documents</h1>
+<html>
+    <head>
+        <title>Files in the folder</title>
+    </head>
+    <body>
+        <h1>Files in the folder:</h1>
+        <ul>
+            {% for file in files %}
+                <li><a href="{{ url_for('view_file', filename=file) }}">{{ file }}</a>
+                    <form action="{{ url_for('delete_file', filename=file) }}" method="post">
+                        <input type="submit" value="Delete">
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
+
+<!-- view_file.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>View file - {{ filename }}</title>
+    </head>
+    <body>
+        <h1>{{ filename }}</h1>
+        <pre>{{ content }}</pre>
+        <a href="{{ url_for('index') }}">Back to file list</a>
+    </body>
+</html>
+
+<!-- delete_file.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Delete file - {{ filename }}</title>
+    </head>
 {% endblock %}

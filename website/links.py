@@ -6,7 +6,6 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 import os
 
-
 links = Blueprint('links', __name__)
 
 @links.route('/user-dashboard', methods=['GET', 'POST'])
