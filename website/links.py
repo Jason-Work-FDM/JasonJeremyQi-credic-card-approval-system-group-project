@@ -144,12 +144,14 @@ def m_income(incomePerAnnum):
 def m_DTI(a,ipa):
     # m stands for the multipying factor for DTI
     m=0.45
-    liabilities = sum(a["Home_Loans"],
-                      a["Personal_Loans"],
-                      a["Credit_Cards_Repayment"],
-                      a["Other_Liability"]
-    )
-    expenses = sum(
+    ls_liabilities = [
+        a["Home_Loans"],
+        a["Personal_Loans"],
+        a["Credit_Cards_Repayment"],
+        a["Other_Liability"]
+    ]
+    liabilities = sum(ls_liabilities)
+    ls_expenses = [
         a["Food"],
         a["Utilities"],
         a["Entertainment"],
@@ -159,7 +161,8 @@ def m_DTI(a,ipa):
         a["Memberships"],
         a["Child_Support"],
         a["Education_Cost"],
-    )
+    ]
+    expenses = sum(ls_expenses)
     # m1 stands for the value of DTI
     m1 = (liabilities+expenses*12)/ipa
     if m1<0.3:
@@ -173,7 +176,49 @@ def m_DTI(a,ipa):
     else:
         m=0
     return m
-def calc_Credit_Limit(a, product):
+
+# get the multipying factor for Relationship and Housing 
+def m_R_and_H(a):
+    m=0 # m stands for the multipying factor for Relationship and Housing
+    
+    m1=0.05 # m1 stands for the multipying factor for Relationship Status
+    if a["Relationship_Status"]=="Married" or a["Relationship_Status"]=="Defacto":
+        m1*=0.8
+        
+    m2=0.1 # m2 stands for the multipying factor for number of dependants
+    if a["Dependants"]>=6:
+        m2=0
+    elif a["Dependants"]>4:
+        m2*=0.5
+    elif a["Dependants"]>2:
+        m2*=0.8
+    
+    m3=0.05 # m3 stands for the multipying factor for house status
+    if a["Housing_Situation"]=="Mortgaged" or a["Housing_Situation"]=="Renting":
+        m3*=0.8
+        
+    m=m1+m2+m3
+    return m
+
+# get the multipying factor for Employment
+def m_employment(a):
+    m=0 # m stands for the multipying factor for Employment
+    
+    m1=0.1 # m1 stands for the multipying factor for employment type 
+    if a["Employment_Type"] == "Part Time":
+        m1*=0.8
+    elif a["Employment_Type"] == "Casual" or a["Employment_Type"] == "Self-employed":
+        m1*=0.5
+    elif a["Employment_Type"] == "Unemployed":
+        m1*=0
+    
+    m2=0.05
+    if a["Service_Time"] <=3:
+        m2*=0
+    m=m1+m2
+    return m
+
+def calc_Credit_Limit(a):
     
     m = 0 # the sum of the multiplying factors 
     # ipa stands for income per annum
@@ -181,7 +226,8 @@ def calc_Credit_Limit(a, product):
     credit_limit =  ipa/2 # the upper limit of the applicant
     m+=m_income(ipa)
     m+=m_DTI(a,ipa)
-    
+    m+=m_R_and_H(a)
+    m+=m_employment(a)
     return round(credit_limit*m/100)*100
     # if var1<30
     
@@ -236,7 +282,7 @@ def apply():
                 flash('you got disapproved for product 1', category="error")
             else:
                 product="product1"
-                Credit_Limit= calc_Credit_Limit(a, product)
+                Credit_Limit= calc_Credit_Limit(a)
                 flash('you got approved for product 1, and your credit limit is: {}'.format(Credit_Limit), category="success")
             # if c.income>5:
             #     #send approval email
@@ -256,7 +302,7 @@ def apply():
                     
             else:
                 product="product2"
-                Credit_Limit= calc_Credit_Limit(a, product)
+                Credit_Limit= calc_Credit_Limit(a)
                 flash('you got approved for product 2, and your credit limit is: {}'.format(Credit_Limit), category="success")      
         # else:
             # pass # unknown
