@@ -66,17 +66,18 @@
     </select>
     <br>
   </div>
-  <div id="Other_Income" >
-    <label for="newIncome1">newIncome 1</label>
+  <div id="more income" >
+    <label for="Other_Income">Other Income</label>
     <input
     type="number"
-    id = "newIncome1"
-    name="newIncome1"
+    id = "Other_Income"
+    name="Other_Income"
+    value={{user.Other_Income}}
 
     /><br>  
-    <label for="Pay Interval">Pay Interval: </label>
+    <label for="Pay_Interval_2">Pay Interval for Other Income: </label>
 
-    <select name="Pay Interval" id="Pay Interval" value={{user.Pay_Interval}}>
+    <select name="Pay_Interval_2" id="Pay_Interval_2" value={{user.Pay_Interval}}>
       <option value="Daily">Daily</option>
       <option value="Weekly">Weekly</option>
       <option value="Fortnightly">Fortnightly</option>
@@ -84,10 +85,11 @@
     </select>
     <br>    
   </div> 
+  <!--
   <script>
     function addIncome() {
       var x = document.getElementById('Other_Income');
-      /*<!--var newIncomeSection = document.getElementById('newIncome')-->
+      /*var newIncomeSection = document.getElementById('newIncome')*/
       const newIncomeLabel=document.createElement('LABEL');
 
       newIncomeLabel.textContent='new label is here';
@@ -109,14 +111,16 @@
       x.append(elebreak)
     }
   </script>
-
+ 
 
   <div align="right">
-    <!-- Hasn't been able to implement anything useful yet-->
+     Hasn't been able to implement anything useful yet
     <button type="button" id="btnAddOtherIncome" onclick="addIncome()">Add Other Income</button>
   </div>
-
+  -->
   <br/>
+  <br>
+  <h1 align="center">Liabilities Section </h1>
   <br>
   <label for="Relationship Stauts">Relationship Stauts: </label>
   <select name="Relationship Stauts" id="Relationship Stauts" value={{user.Relationship_Status}}>
@@ -145,25 +149,47 @@
   </select>
   <br>
   <br>
-  <label for="Liabilities" style="font-size: 100%">Liabilities: </label><br>
+  <label for="Liabilities" style="font-size: 120%">Liabilities (per annum): </label><br>
+  <!--
   <pre>
   Do you have any home loans, including for investment purposes?
   Do you have any personal loans? e.g. car loan, HELP?
   Do you have any credit cards?
   Do you have any other liability?  </pre>
   <p style="font-size: 100%">If you answered yes to any of the questions. Please add detail.</p>
-  <br>
-  <!-- <input type="radio" id="Yes" name="Home Loan" value="Yes"/>
-  <label for="Yes" -->
-
-
-
-
-
-
-
+  -->
+  <label for="Home_Loans">Home Loan(s): </label>
+  <input
+    type="number"
+    id = "Home_Loans"
+    name="Home_Loans"
+    value={{user.Home_Loans}}
+  /><br>  
+  <label for="Personal_Loans">Personal Loans (e.g. car loan, HELP): </label>
+  <input
+    type="number"
+    id = "Personal_Loans"
+    name="Personal_Loans"
+    value={{user.Personal_Loans}}
+  /><br>  
+  <label for="Credit_Cards_Repayment">Credit Card(s) Repayment: </label>
+  <input
+    type="number"
+    id = "Credit_Cards_Repayment"
+    name="Credit_Cards_Repayment"
+    value={{user.Credit_Cards_Repayment}}
+  /><br>  
+  <label for="Other_Liability">Other Liability: </label>
+  <input
+    type="number"
+    id = "Other_Liability"
+    name="Other_Liability"
+    value={{user.Other_Liability}}
+  /><br>  
   
-  <textarea name="note" id="note" class="form-control"></textarea>
+  
+  <br>
+
   <br />
 
   <h1 align="center">Expenses per Month</h1>
@@ -237,7 +263,7 @@
     value={{user.Education_Cost}}
   /><br>   
 
-  <h1 align="center">Employment</h1>
+  <h1 align="center">Employment Section</h1>
   <br>
   <label for="Employment Type">Employment Type: </label>
   <select name="Employment Type" id="Employment Type" value={{user.Employment_Type}}>
@@ -271,13 +297,17 @@
   /><br>
 
   <br>
-  <h1 align="center">Credit Limit</h1>
-  <label for="Credit Limit">Select preferred credit limit (in hundreds): </label>
+  <h1 align="center">Credit Score</h1>
+  <br>
+  <b>Please upload the supporting document in the upload ducument module in the user dashboard page </b>
+  <br>
+  <label for="Credit Limit">Please fill in your Credit Score: </label>
+
   <input
     type="number"
     id = "Credit Limit"
     name="Credit Limit"
-    value={{user.Credit_Limit}}
+    value={{user.Credit_Score}}
   /><br>     
 
 
