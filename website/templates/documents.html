@@ -2,23 +2,53 @@
 
 <h1 align="center">{{ user.first_name }}'s Documents</h1>
 <br>
-<form action = "/success" method = "post" enctype="multipart/form-data">  
+<form action="/success" method="post" enctype="multipart/form-data">  
     <input type="file" name="file" />
-    <input type = "submit" value="Upload">
+    <input type="submit" value="Upload">
   </form>
 <br>
-  <h>
-    Uploaded Documents
-  </h>
+<br>
+<style type="text/css">
+  table {
+    font-size: large;
+    width:100%;
+  };
+  tr {
+    height:30px;
+  }
+  th, td {
+    border-bottom:1px solid black;
+    padding: 30px;
+  };
+  /* .link-lookalike {
+    background: none;
+    border: none;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+} */
+</style>
 
-{% for file in files %}
-<li>
-    <a href="{{ url_for('documents.serve_file', filename=file) }}">{{ file }}</a>
-    <form action="{{ url_for('documents.delete', filename=file) }}" method="post">
-        <input type="submit" value="Delete" style="margin-left:auto; display: block;" >
-    </form>
-</li>
-{% endfor %}
+<table class="documents">
+    <th>Uploaded Documents</th>
+    <th>Upload Date</th>
+    <th>Size</th>
+    <th id="view-link"></th>
+    <th id="delete-link"></th>
+  {% for file in files %}
+  <tr>
+    <td>{{ file['filename'] }}</td>
+    <td>{{ file['upload_date'] }}</td>
+    <td>{{ file['filesize'] }}</td>
+    <td><a href="{{ url_for('documents.serve_file', filename=file['filename']) }}" target="_blank">View</a></td>
+    <td>
+      <form name="delete" action="{{ url_for('documents.delete', filename=file['filename']) }}" method="post">
+        <input type="submit" value="Delete" class="link-lookalike">
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
 
 
 
