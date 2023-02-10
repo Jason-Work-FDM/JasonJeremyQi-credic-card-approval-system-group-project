@@ -1,5 +1,26 @@
 {% extends "base.html" %} {% block title %}User Dashboard{% endblock %} {% block content %}
 
 <h1 align="center">{{ user.first_name }}'s Documents</h1>
+<br>
+<form action = "/success" method = "post" enctype="multipart/form-data">  
+    <input type="file" name="file" />
+    <input type = "submit" value="Upload">
+  </form>
+<br>
+  <h>
+    Uploaded Documents
+  </h>
+
+{% for file in files %}
+<li>
+    <a href="{{ url_for('documents.serve_file', filename=file) }}">{{ file }}</a>
+    <form action="{{ url_for('documents.delete', filename=file) }}" method="post">
+        <input type="submit" value="Delete" style="margin-left:auto; display: block;" >
+    </form>
+</li>
+{% endfor %}
+
+
+
 
 {% endblock %}

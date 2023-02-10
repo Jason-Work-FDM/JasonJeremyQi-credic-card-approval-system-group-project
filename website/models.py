@@ -1,6 +1,7 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from flask import Flask
 
 
 # class Note(db.Model):
@@ -15,11 +16,11 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
-    Last_name = db.Column(db.String(150), default="")    
+    Last_name = db.Column(db.String(150), default="")
     Middle_name = db.Column(db.String(150), default="")
     Mobile = db.Column(db.Integer, default="")
     Address = db.Column(db.String(150), default="")
-    income = db.Column(db.Integer, default="")    
+    income = db.Column(db.Integer, default="")
     Pay_Interval = db.Column(db.String(150), default="")
     Relationship_Stauts = db.Column(db.String(150), default="")
     Dependants = db.Column(db.Integer, default="")       

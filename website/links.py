@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, current_app, render_template, request, flash, redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -77,19 +77,23 @@ def user_info():
     return render_template("User_info.html", user=current_user)
 
 @links.route('/success', methods=['POST'])  
-def success():  
+def success():
+    # current_app.config['UPLOAD_FOLDER']
     if request.method == 'POST': 
         f = request.files['file']
-        upload_dir = './user_uploads/'
-        if not os.path.isdir(upload_dir):
-            print("i'm in create upload dir")
-            os.mkdir(upload_dir)
-        user_path = os.path.join(upload_dir, str(current_user.id))
+        if not os.path.isdir(current_app.config['UPLOAD_FOLDER']):
+            os.mkdir(current_app.config['UPLOAD_FOLDER'])
+
+        user_path = os.path.join(os.getcwd(), current_app.config['UPLOAD_FOLDER'], str(current_user.id))
         if not os.path.isdir(user_path):
             print("i'm in if not os.path.isdir")
             os.mkdir(user_path)
 
         f.save(f"{user_path}/{f.filename}")
+    
+    return redirect(url_for('documents.index'))
+
+    
 
 @links.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
@@ -128,7 +132,3 @@ def apply():
 @links.route('/spending_habits', methods=['GET', 'POST'])
 def spending_habits():
     return render_template("spending_habits.html", user=current_user)
-    
-@links.route('/documents', methods=['GET', 'POST'])
-def documents():
-    return render_template("documents.html", user=current_user)
