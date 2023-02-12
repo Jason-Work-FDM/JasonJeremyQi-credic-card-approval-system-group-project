@@ -14,62 +14,116 @@
 </ul>
 
 
-<form method="POST">
+
+<form id="info_form" method="POST" >
+
   <div align="center">
-    <button type="submit" class="btn btn-primary">Edit Profile</button>
+    <button type="submit" class="btn btn-primary">Save Profile</button>
   </div>  
   <label for="fname">First name: </label>
-  <input type="text" id="fname" name="fname"><br>
+  <input type="text" id="fname" name="fname"  value={{user.first_name}}><br>
   <label for="lname">Last name: </label>
-  <input type="text" id="lname" name="lname"><br>
+  <input type="text" id="lname" name="lname"  value={{user.Last_name}}><br>
   <label for="mname">Middle name (optional): </label>
-  <input type="text" id="mname" name="mname"><br>
+  <input type="text" id="mname" name="mname" value={{user.Middle_name}}><br>
   <label for="email">Email Address: </label>
   <input
     type="email"
     id="email" 
     name="email"
-    placeholder="e.g. me@example.com"
+    value={{user.email}}
   /><br>
   <label for="mobile">Mobile: </label>
-  <input type="tel" id="mobile" name="mobile"><br>
+  <input type="tel" id="mobile" name="mobile" value={{user.Mobile}}><br>
   <label for="Address">Address: </label>
-  <input type="text" id="Address" name="Address"><br>
+  <input type="text" id="Address" name="Address" value={{user.Address}}><br>
 
 
 
 
 
   <br/>
-  <label for="income">Income/Salary (after tax):</label>
-  <!-- <input list="Pay Interval" 
-    placeholder="Please Select Pay Interval"
-    size=30
-  /> -->
-  <input
-  type="number"
-  id = "income"
-  name="income"
-  palceholder="0"
-  /><br>  
-  <label for="Pay Interval">Pay Interval: </label>
+  <div id="income_section"> 
+    <h1 align="center">Income Section </h1>
+    <label for="income">Income/Salary (after tax):</label>
+    <!-- <input list="Pay Interval" 
+      placeholder="Please Select Pay Interval"
+      size=30
+    /> -->
+    <input
+    type="number"
+    id = "income"
+    name="income"
+    value={{user.income}}
+    /><br>  
+    <label for="Pay Interval">Pay Interval: </label>
 
-  <select name="Pay Interval" id="Pay Interval">
-    <option value="Daily">Daily</option>
-    <option value="Weekly">Weekly</option>
-    <option value="Fortnightly">Fortnightly</option>
-    <option value="Monthly">Monthly</option>
-  </select>
-  <br>
+    <select name="Pay Interval" id="Pay Interval" value={{user.Pay_Interval}}>
+      <option value="Daily">Daily</option>
+      <option value="Weekly">Weekly</option>
+      <option value="Fortnightly">Fortnightly</option>
+      <option value="Monthly">Monthly</option>
+    </select>
+    <br>
+  </div>
+  <div id="more income" >
+    <label for="Other_Income">Other Income</label>
+    <input
+    type="number"
+    id = "Other_Income"
+    name="Other_Income"
+    value={{user.Other_Income}}
+
+    /><br>  
+    <label for="Pay_Interval_2">Pay Interval for Other Income: </label>
+
+    <select name="Pay_Interval_2" id="Pay_Interval_2" value={{user.Pay_Interval}}>
+      <option value="Daily">Daily</option>
+      <option value="Weekly">Weekly</option>
+      <option value="Fortnightly">Fortnightly</option>
+      <option value="Monthly">Monthly</option>
+    </select>
+    <br>    
+  </div> 
+  <!--
+  <script>
+    function addIncome() {
+      var x = document.getElementById('Other_Income');
+      /*var newIncomeSection = document.getElementById('newIncome')*/
+      const newIncomeLabel=document.createElement('LABEL');
+
+      newIncomeLabel.textContent='new label is here';
+      const newInput=document.createElemnt('INPUT');
+      newInput.type=number;
+      x.appendChild(newIncomeLabel);
+      x.appendChild(newInput);*/
+      let newVar=document.createElement('label')
+      newVar.textContent="new Income 2 : "
+      let newVar2=document.createElement('input')
+      newVar2.id="income2"
+      newVar2.type="number"
+      newVar.for = "income2"
+      let elebreak=document.createElement('br')
+
+      x.append(newVar)
+
+      x.append(newVar2)
+      x.append(elebreak)
+    }
+  </script>
+ 
 
   <div align="right">
-    <!-- Hasn't been able to implement anything useful yet-->
-    <button type="submit" class="btn btn-primary">Add Other Income</button>
+     Hasn't been able to implement anything useful yet
+    <button type="button" id="btnAddOtherIncome" onclick="addIncome()">Add Other Income</button>
   </div>
+  -->
   <br/>
   <br>
+  <h1 align="center">Liabilities Section </h1>
+  <br>
   <label for="Relationship Stauts">Relationship Stauts: </label>
-  <select name="Relationship Stauts" id="Relationship Stauts">
+  <select name="Relationship Stauts" id="Relationship Stauts" value={{user.Relationship_Status}}>
     <option value="Single">Single</option>
     <option value="Married">Married</option>
     <option value="Defacto">Defacto</option>
@@ -84,10 +138,10 @@
     type="number"
     id = "Dependants"
     name="Dependants"
-    palceholder=1
+    value={{user.Dependants}}
   /><br>  
   <label for="Housing Situation">Housing Situation: </label>
-  <select name="Housing Situation" id="Housing Situation">
+  <select name="Housing Situation" id="Housing Situation" value={{user.Housing_Situation}}>
     <option value="Mortgaged">Mortgaged</option>
     <option value="Owns Outright">Owns Outright</option>
     <option value="Renting">Renting</option>
@@ -95,23 +149,47 @@
   </select>
   <br>
   <br>
-  <label for="Liabilities" style="font-size: 100%">Liabilities: </label><br>
+  <label for="Liabilities" style="font-size: 120%">Liabilities (per annum): </label><br>
+  <!--
   <pre>
   Do you have any home loans, including for investment purposes?
   Do you have any personal loans? e.g. car loan, HELP?
   Do you have any credit cards?
   Do you have any other liability?  </pre>
   <p style="font-size: 100%">If you answered yes to any of the questions. Please add detail.</p>
-  <br>
-  <!-- <input type="radio" id="Yes" name="Home Loan" value="Yes"/>
-  <label for="Yes" -->
-
-
-
-
-
+  -->
+  <label for="Home_Loans">Home Loan(s): </label>
+  <input
+    type="number"
+    id = "Home_Loans"
+    name="Home_Loans"
+    value={{user.Home_Loans}}
+  /><br>  
+  <label for="Personal_Loans">Personal Loans (e.g. car loan, HELP): </label>
+  <input
+    type="number"
+    id = "Personal_Loans"
+    name="Personal_Loans"
+    value={{user.Personal_Loans}}
+  /><br>  
+  <label for="Credit_Cards_Repayment">Credit Card(s) Repayment: </label>
+  <input
+    type="number"
+    id = "Credit_Cards_Repayment"
+    name="Credit_Cards_Repayment"
+    value={{user.Credit_Cards_Repayment}}
+  /><br>  
+  <label for="Other_Liability">Other Liability: </label>
+  <input
+    type="number"
+    id = "Other_Liability"
+    name="Other_Liability"
+    value={{user.Other_Liability}}
+  /><br>  
   
-  <textarea name="note" id="note" class="form-control"></textarea>
+  
+  <br>
+
   <br />
 
   <h1 align="center">Expenses per Month</h1>
@@ -122,35 +200,35 @@
     type="number"
     id = "Food"
     name="Food"
-    palceholder=1
+    value={{user.Food}}
   /><br> 
   <label for="Utilities">Utilities: </label>
   <input
     type="number"
     id = "Utilities"
     name="Utilities"
-    palceholder=1
+    value={{user.Utilities}}
   /><br>   
   <label for="Entertainment">Travel and Entertainment: </label>
   <input
     type="number"
     id = "Entertainment"
     name="Entertainment"
-    palceholder=1
+    value={{user.Entertainment}}
   /><br>   
   <label for="Clothing">Clothing, School and Pets: </label>
   <input
     type="number"
     id = "Clothing"
     name="Clothing"
-    palceholder=1
+    value={{user.Clothing}}
   /><br>   
   <label for="Home">Home, Contents and Car Insurance: </label>
   <input
     type="number"
     id = "Home"
     name="Home"
-    palceholder=1
+    value={{user.Home}}
   /><br> 
   <br>
 
@@ -161,54 +239,104 @@
     type="number"
     id = "Private Insurance"
     name="Private Insurance"
-    palceholder=1
+    value={{user.Private_Insurance}}
   /><br> 
   <label for="Memberships">Memberships: </label>
   <input
     type="number"
     id = "Memberships"
     name="Memberships"
-    palceholder=1
+    value={{user.Memberships}}
   /><br>   
   <label for="Child Support">Child Support: </label>
   <input
     type="number"
     id = "Child Support"
     name="Child Support"
-    palceholder=1
+    value={{user.Child_Support}}
   /><br>   
   <label for="Education Cost">Education Cost: </label>
   <input
     type="number"
     id = "Education Cost"
     name="Education Cost"
-    palceholder=1
+    value={{user.Education_Cost}}
   /><br>   
 
+  <h1 align="center">Employment Section</h1>
+  <br>
+  <label for="Employment Type">Employment Type: </label>
+  <select name="Employment Type" id="Employment Type" value={{user.Employment_Type}}>
+    <option value="Full Time">Full Time</option>
+    <option value="Part Time">Part Time</option>
+    <option value="Casual">Casual</option>
+    <option value="Self-employed">Self-employed</option>
+    <option value="Unemployed">Unemployed</option>
+  </select>
+  <br>     
+  <label for="Occupation">Occupation: </label>
+  <input
+    type="text"
+    id = "Occupation"
+    name="Occupation"
+    value={{user.Occupation}}
+  /><br>     
+  <label for="Company Name">Company Name: </label>
+  <input
+    type="text"
+    id = "Company Name"
+    name="Company Name"
+    value={{user.Company_Name}}
+  /><br>     
+  <label for="Service Time">Length of time working for this employer (in months): </label>
+  <input
+    type="number"
+    id = "Service Time"
+    name="Service Time"
+    value={{user.Service_Time}}
+  /><br>
 
+  <br>
+  <h1 align="center">Credit Score</h1>
+  <br>
+  <b>Please upload the supporting document in the upload ducument module in the user dashboard page </b>
+  <br>
+  <label for="Credit Limit">Please fill in your Credit Score: </label>
+
+  <input
+    type="number"
+    id = "Credit Limit"
+    name="Credit Limit"
+    value={{user.Credit_Score}}
+  /><br>     
+
+
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Save Profile</button>
+  </div>
 </form>
-<!--<button onclick="myFunction()">Click Me</button>
 
-<div id="myDIV">
-  This is my DIV element.
-</div>
-<script>
-  function myFunction() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
-</script>-->
 
-<div align="center">
-  <button type="submit" class="btn btn-primary">Save Profile</button>
-</div>
 
 <form action = "/success" method = "post" enctype="multipart/form-data">  
   <input type="file" name="file" />  
   <input type = "submit" value="Upload">
 </form>  
 {% endblock %}
+
+<!--  <script>
+    function myFunction() {
+      var x = document.getElementById("myDIV");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+  </script>
+  <button type="button" onclick="myFunction()">Click Me</button>
+
+  <div id="myDIV">
+    This is my DIV element.
+  </div>
+-->
