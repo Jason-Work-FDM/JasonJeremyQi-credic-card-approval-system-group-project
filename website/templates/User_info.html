@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block title %}User Info{% endblock %} {% block content %}
-
+<br>
 <h1 align="center">Personal Info for {{ user.first_name }}</h1>
 
 <ul class="list-group list-group-flush" id="notes">
@@ -318,10 +318,10 @@
 
 
 
-<form action = "/success" method = "post" enctype="multipart/form-data">  
+<!-- <form action = "/success" method = "post" enctype="multipart/form-data">  
   <input type="file" name="file" />  
   <input type = "submit" value="Upload">
-</form>  
+</form>   -->
 {% endblock %}
 
 <!--  <script>
