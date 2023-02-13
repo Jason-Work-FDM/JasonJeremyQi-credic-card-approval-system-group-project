@@ -101,6 +101,8 @@ def success():
             os.mkdir(user_path)
 
         f.save(f"{user_path}/{f.filename}")
+        flash(f"\"{f.filename}\" successfully uploaded!")
+
     
     return redirect(url_for('documents.index'))
 
