@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %}User Dashboard{% endblock %} {% block content %}
+<br>
+<h1 align="center">Credit Card Application</h1>
+<p> Select one product to apply</p>
+<br>
+<!--
+    <button type="button">apply product 1</button>
+<br>
+<br>
+<br>
+<button type="button">apply product 2</button>
+
+<p> {{user.first_name}}</p>
+-->
+
+<form method="post" action="/apply">
+    <input type="submit" value="apply product 1" name="action1"/>
+    <br>
+    <br>
+    <input type="submit" value="apply product 2" name="action2"/>
+</form>
+
+{% endblock %}
