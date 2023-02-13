@@ -15,9 +15,7 @@ def user_dashboard():
 
 @links.route('/user-info', methods=['GET', 'POST'])
 def user_info():
-
     if request.method == 'POST':
-        
         email = request.form.get('email')
         first_name = request.form.get('fname')
         Last_name = request.form.get('lname')
@@ -83,8 +81,8 @@ def user_info():
         user.Service_Time = Service_Time
         user.Credit_Score = Credit_Score
         db.session.commit()
-    
-    
+        flash("Your profile has been updated!")
+
     return render_template("User_info.html", user=current_user)
 
 @links.route('/success', methods=['POST'])  
