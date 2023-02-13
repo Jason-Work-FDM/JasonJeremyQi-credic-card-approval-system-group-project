@@ -316,6 +316,3 @@ def apply():
 
     return render_template("apply.html", user=current_user)
 
-@links.route('/spending_habits', methods=['GET', 'POST'])
-def spending_habits():
-    return render_template("spending_habits.html", user=current_user)
