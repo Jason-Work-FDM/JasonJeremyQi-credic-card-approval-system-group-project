@@ -234,12 +234,6 @@ def calc_Credit_Limit(a):
     m+=m_employment(a)
     return round(credit_limit*m/100)*100
     # if var1<30
-    
-    
-
-
-
-
 
 
 @links.route('/apply', methods=['GET', 'POST'])
