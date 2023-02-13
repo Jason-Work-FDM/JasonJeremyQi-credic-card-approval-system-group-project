@@ -280,7 +280,7 @@ def apply():
             "Service_Time": c.Service_Time,
             "Credit_Score": c.Credit_Score,
         }
-        if request.form.get('action1') == 'apply product 1':
+        if request.form.get('action1') == 'Apply Low Fee Credit Card':
             flash('your application for product 1 is under review, we will contact you via email asap!', category='success')
             if c.Credit_Score <580:
                 flash('you got disapproved for product 1', category="error")
@@ -297,7 +297,7 @@ def apply():
             
             
             
-        elif  request.form.get('action2') == 'apply product 2':
+        elif  request.form.get('action2') == 'Apply Rewards Credit Card':
             flash('your application for product 2 is under review, we will contact you via email asap!', category='success')
             if c.Credit_Score<670:
                 flash('you got disapproved for product 2', category="error") 
