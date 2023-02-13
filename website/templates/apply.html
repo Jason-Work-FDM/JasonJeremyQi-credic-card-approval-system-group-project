@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}User Dashboard{% endblock %} {% block content %}
 <br>
 <h1 align="center">Credit Card Application</h1>
-<p> Select one product to apply</p>
+<p align="center"> Please select one product to apply</p>
 <br>
 <!--
     <button type="button">apply product 1</button>
@@ -14,10 +14,61 @@
 -->
 
 <form method="post" action="/apply">
-    <input type="submit" value="apply product 1" name="action1"/>
+    <style>
+        h3 {
+          color: rgb(22, 121, 160);
+        }
+        h5 {
+          color: rgb(22, 121, 160);
+        }
+      </style>
+      
+    <h3>Low Fee Credit Card</h3>
+    <h5>What you’ll get:</h5>
     <br>
+    <ul>
+        <li>$0 annual fee in the first year and subsequent years when you spend $10,000</li>
+        <li>15.74% p.a. purchase interest rate</li>
+        <li>Up to 55 days interest-free on purchases</li>
+        <li>Late payment fee $25</li>
+        <li>Minimum credit limit of $2,000</li>
+        <li>Pay no international transaction fees for purchases you make overseas or online</li>
+        <li>Purchase security insurance available for most lost, stolen or damaged purchases</li>
+        <li>No Awards points</li>
+        </ul>
+    <input type="submit" value="Apply Low Fee Credit Card" name="action1"/>
     <br>
-    <input type="submit" value="apply product 2" name="action2"/>
+    </br>
+    <br><br><br>
+    <h3>Rewards Credit Card</h3>
+    <p>100,000 bonus Awards points when you apply for a new Awards credit card and spend $5,000 on any purchases using your new card within 90 days of activation.</p>
+    <h5>What you’ll get:</h5>
+    <br>
+    <ul>
+        <li>$195 annual fee in the first year and $295 in the subsequent years</li>
+        <li>21.74% p.a. purchase interest rate</li>
+        <li>Up to 55 days interest-free on purchases</li>
+        <li>Minimum credit limit of $10,000</li>
+        <li>Pay no international transaction fees for purchases you make overseas or online</li>
+        <li>Purchase security insurance available for most lost, stolen or damaged purchases</li>
+        <li>Included international travel insurance, simply activate before you travel</li>
+        <li>No additional cardholder fee to share your card with someone else </li>
+        <li>Earn up to 3 Awards points for every $1 spent using your Reward Credit Card on eligible purchases, up to $10,000 in a statement period</li>
+        <li>Earn unlimited Awards points each year</li>
+        <li>Enjoy paid access to over 1,000 lounges worldwide with Visa Airport Experiences provided by LoungeKey, paid for using your Ultimate Awards credit card</li>
+    </ul>
+    <br>
+
+    <h5>What could 100,000 Award Points get you?</h5>
+    <br>
+    <ul>
+        <li>Minimum $650 digital gift card</li>
+        to use at one of our 25 leading retailers, including JB Hi-Fi, Endota Spa, Myer and Bunnings</br>
+        <li>$600 Cashback</li>
+        which can be used to either reduce your Awards credit card balance or be credited to an eligible bank account</ul>
+        </ul>
+    <input type="submit" value="Apply Rewards Credit Card" name="action2"/>
 </form>
 
 {% endblock %}
+    
