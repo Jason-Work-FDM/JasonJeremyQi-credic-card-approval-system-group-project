@@ -1,6 +1,21 @@
 {% extends "base.html" %} {% block title %}User Dashboard{% endblock %} {% block content %}
 <br>
 <h1 align="center">{{ user.first_name }}'s Spending Habits</h1>
-<p></p>{{ api_data }}
-
+<body>
+  <div id='chart' class='chart'”></div>
+</body>
+<!-- if all zero: show error + button to user profile
+else: show the pie chart
+-->
+{% if graphJSON %}
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script type='text/javascript'>
+  var graphs = {{graphJSON | safe}};
+  Plotly.plot('chart',graphs,{});
+</script>
+{% else %}
+<br><br>
+<a href="user-info"><p style="font-size:24px">Please fill in your expenses in the user information page.</p>
+</a>
+{% endif %}
 {% endblock %}

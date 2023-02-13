@@ -234,12 +234,6 @@ def calc_Credit_Limit(a):
     m+=m_employment(a)
     return round(credit_limit*m/100)*100
     # if var1<30
-    
-    
-
-
-
-
 
 
 @links.route('/apply', methods=['GET', 'POST'])
@@ -316,6 +310,3 @@ def apply():
 
     return render_template("apply.html", user=current_user)
 
-@links.route('/spending_habits', methods=['GET', 'POST'])
-def spending_habits():
-    return render_template("spending_habits.html", user=current_user)
