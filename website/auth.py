@@ -4,11 +4,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 from flask_mail import Mail, Message
-from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+from random import *
+# from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+import time
 import os
 
 auth = Blueprint('auth', __name__)
-
+otp=randint(000000,999999)
+# s = URLSafeTimedSerializer('Thisisasecret!')
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -59,13 +62,37 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
+            # email = request.form['email']
+
+            msg = Message('Confirm Email', sender='mofei.shi1@gmail.com', recipients=[email])
+            # global otp
+
             
+            msg.body = 'Your otp is {}'.format(otp)
+            # from . import app
+            # mail=Mail(app)
+            from . import mail
+            mail.send(msg)
+            global new_user
             new_user = User(email=email, first_name=first_name, password=generate_password_hash(
                 password1, method='sha256'))#, income =-1)
-            db.session.add(new_user)
-            db.session.commit()
-            login_user(new_user, remember=True)
-            flash('Account created for {new_user.first_name}', category='success')
-            return redirect(url_for('links.dashboard'))
+            return render_template('verify.html')
+            # flash('The email you entered is {}. The token is {}'.format(email, token))            
+    return render_template("sign_up.html", user=current_user)
+            
+            
+            
+@auth.route('/validate', methods=["POST"])
+def validate():
+    user_otp=request.form['otp']
+    if otp == int(user_otp):
 
+        db.session.add(new_user)
+        db.session.commit()
+        login_user(new_user, remember=True)
+        flash('Account created for {}'.format(new_user.first_name), category='success')
+        return redirect(url_for('links.dashboard', user=current_user))
+
+    else:
+        flash("The OTP you entered was incorrect, please try again", category='error')
     return render_template("sign_up.html", user=current_user)

@@ -3,7 +3,7 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
-
+from flask_mail import Mail, Message
 import os
 
 
@@ -55,6 +55,7 @@ def user_info():
         user.Middle_name = Middle_name
         user.Mobile = Mobile 
         user.Address = Address
+        user.Email = email
         user.income=income 
         user.Pay_Interval = Pay_Interval
         user.Other_Income = Other_Income 
@@ -248,6 +249,7 @@ def apply():
             "Middle_name": c.Middle_name,
             "Mobile": c.Mobile ,
             "Address": c.Address,
+            "Email":c.email,
             "income":c.income, 
             "Pay_Interval": c.Pay_Interval,
             "Other_Income": c.Other_Income ,
@@ -274,14 +276,33 @@ def apply():
             "Service_Time": c.Service_Time,
             "Credit_Score": c.Credit_Score,
         }
+        email = a["Email"]
+        msg = Message('Application Outcome from ANZ',
+                      sender="mofei.shi1@gmail.com",
+                      recipients=[email]
+                      )
+        from . import mail
         if request.form.get('action1') == 'Apply Low Fee Credit Card':
             flash('your application for product 1 is under review, we will contact you via email asap!', category='success')
-            if c.Credit_Score <580:
-                flash('you got disapproved for product 1', category="error")
+
+            
+            if c.Credit_Score <580 or calc_incomePerAnnum(a) == 0:
+                # flash('you got disapproved for product 1', category="error")
+                msg.body="""Dear {},
+                          
+                        Your application for Low Fee Credit Card has not been successful.
+                        """.format(a["first_name"])
+            
+                
             else:
-                product="product1"
                 Credit_Limit= calc_Credit_Limit(a)
-                flash('you got approved for product 1, and your credit limit is: {}'.format(Credit_Limit), category="success")
+                msg.body="""Dear {},
+                          
+                          Your application for Low Fee Credit Card has been approved.
+                          Your credit limit is: {}.""".format(a["first_name"],Credit_Limit)
+            
+            mail.send(msg)
+                # flash('you got approved for product 1, and your credit limit is: {}'.format(Credit_Limit), category="success")
             # if c.income>5:
             #     #send approval email
             #     flash('you got approved for product 1', category="success")
@@ -292,16 +313,20 @@ def apply():
             
             
         elif  request.form.get('action2') == 'Apply Rewards Credit Card':
-            flash('your application for product 2 is under review, we will contact you via email asap!', category='success')
-            if c.Credit_Score<670:
-                flash('you got disapproved for product 2', category="error") 
-            elif calc_incomePerAnnum(a) < 100_000:
-                flash('you got disapproved for product 2', category="error") 
-                    
+            flash('your application for Rewards Credit Card is under review, we will contact you via email asap!', category='success')
+            if c.Credit_Score<670 or calc_incomePerAnnum(a) < 100_000:
+                msg.body="""Dear {},
+                          
+                        Your application for Rewards Credit Card has not been successful.
+                        """.format(a["first_name"])    
             else:
-                product="product2"
                 Credit_Limit= calc_Credit_Limit(a)
-                flash('you got approved for product 2, and your credit limit is: {}'.format(Credit_Limit), category="success")      
+                msg.body="""Dear {},
+                          
+                          Your application for Rewards Credit Cardhas been approved.
+                          Your credit limit is: {}.""".format(a["first_name"],Credit_Limit)   
+            
+            mail.send(msg)   
         # else:
             # pass # unknown
     # elif request.method == 'GET':
