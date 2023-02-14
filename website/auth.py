@@ -3,10 +3,12 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
-
+from flask_mail import Mail, Message
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 import os
 
 auth = Blueprint('auth', __name__)
+
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -36,6 +38,7 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
+
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
@@ -56,14 +59,13 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
+            
             new_user = User(email=email, first_name=first_name, password=generate_password_hash(
                 password1, method='sha256'))#, income =-1)
-            
             db.session.add(new_user)
             db.session.commit()
-            # flash(new_user.first_name)
             login_user(new_user, remember=True)
-            flash('Account created!', category='success')
+            flash('Account created for {new_user.first_name}', category='success')
             return redirect(url_for('links.dashboard'))
 
     return render_template("sign_up.html", user=current_user)
