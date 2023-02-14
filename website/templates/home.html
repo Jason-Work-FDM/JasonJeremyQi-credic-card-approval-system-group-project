@@ -1,23 +1,53 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
 <!-- <h1 align="center">{{user.first_name}}'s Notes</h1> -->
-<h1 align="center">Pond Project - Credit Card Approval System</h1>
+<h1 align="center">JQJ Credit Card Approval System</h1>
+<h4 align="center">Get a Response in 60 Seconds</h5>
+<br>
 
-<ul class="list-group list-group-flush" id="notes">
-  {% for note in user.notes %}
-  <li class="list-group-item">
-    {{ note.data }}
-    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </li>
-  {% endfor %}
-</ul>
-<form method="POST">
-  <textarea name="note" id="note" class="form-control"></textarea>
-  <br />
-  <div align="center">
-    <button type="submit" class="btn btn-primary">Add Note</button>
-  </div>
-</form>
+<form method="post" action="/apply">
+  <style>
+      h3 {
+        color: rgb(22, 121, 160);
+      }
+      h5 {
+        color: rgb(22, 121, 160);
+      }
+    </style>
+<!--
+    <button type="button">Learn More</button>
+<br>
+<br>
+<br>
+<button type="button">Apply Now</button>
+
+<p> {{user.first_name}}</p>
+-->
+
+
+<h3>Know the type of credit card you want?</h3>
+<h5>Low Fee Credit Card</h5>
+<p>A straightforward credit card with no annual card fee, ever (minimum spend applies)* and up to 55 days interest free on purchases.</p>
+
+<h5>Rewards Credit Card</h5>
+<p>Earn unlimited Awards points each year, redeem for  gift cards, travel, products from our online store or cashback. Complimentary International Travel, purchase insurances and lounge passes</p>
+<input type="submit" value="Learn More" name="action1"/>
+<br>
+</br>
+<h3>Setting up for success</h3>
+<ul>
+    <li>18+ years of age to apply</li>
+    <li>Australian citizens, permanent residents or holders of an acceptable visa.</li>
+    <li>Providing the right documents</li>
+    As part of your application, you will be asked to provide us with certain documents.
+Please ensure that you submit the documents as requested so we can process your application as quick and easy as possible.
+    <li>Checking your credit report</li>
+    If the information you provide in your application does not match what's on your credit file, we'll follow up with you after you submit your application.
+It can be a good idea to get familiar with your credit report before you apply.
+You can view your credit report for free. A good place to start is www.creditsmart.org.au.
+</br>
+    </ul>
+
+    <input type="submit" value="Apply Now" name="action1"/>
+
 {% endblock %}
