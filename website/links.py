@@ -120,6 +120,8 @@ def calc_incomePerAnnum(a):
             x=260
         elif pi == "Weekly":
             x=52
+        elif pi == "Fortnightly":
+            x=26
         elif pi == "Monthly":
             x=12
         return x
