@@ -283,7 +283,7 @@ def apply():
                       )
         from . import mail
         if request.form.get('action1') == 'Apply Low Fee Credit Card':
-            flash('your application for product 1 is under review, we will contact you via email asap!', category='success')
+            flash('your application for Low Fee Credit Card is under review, we will contact you via email asap!', category='success')
 
             
             if c.Credit_Score <580 or calc_incomePerAnnum(a) == 0:
