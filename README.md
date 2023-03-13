@@ -1,4 +1,11 @@
 # Pond-Project
+This repositary serves as the co-work space for the JQJ group of FDM. 
+	Team member consists of:
+		Jason Gideon
+		Qi Li
+		Jeremy Li
+The project is used as a practice for the pondee. 
+The goal to create a credit card approval system for ANZ.
 
 ## Setup & Installtion
 
